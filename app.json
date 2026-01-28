@@ -52,7 +52,8 @@
     ]
   },
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-sticky": "@vant/weapp/sticky/index"
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
