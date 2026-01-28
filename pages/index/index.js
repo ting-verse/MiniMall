@@ -3,7 +3,8 @@ const { bannerList, category, goodsDynamic } = require('../../apis/products.js')
 Page({
   data: {
     banners: [],
-    categories: []
+    categories: [],
+    goodsDynamic: []
   },
   goSearch() {
     console.log("hello")
@@ -30,6 +31,11 @@ Page({
     // 购买记录
     goodsDynamic().then(res => {
       console.log(res, "goodsDynamic")
+      if (res.code === 10000) {
+        this.setData({
+          goodsDynamic: res.data
+        })
+      }
     })
   }
 })
