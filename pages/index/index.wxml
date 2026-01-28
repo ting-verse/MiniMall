@@ -10,12 +10,17 @@
   </view>
 </van-sticky>
 
+<!-- 轮播 -->
 <view class="swiper-container">
-  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" 	indicator-active-color="#fff">
-    <block wx:for="{{background}}" wx:key="*this">
+  <swiper class="swiper1" indicator-dots autoplay circular indicator-active-color="#fff">
+    <block wx:for="{{banners}}" wx:key="id">
       <swiper-item>
-        <view class="swiper-item {{item}}"></view>
+        <image src="{{item.picUrl}}" mode="aspectFit"/>
       </swiper-item>
     </block>
   </swiper>
 </view>
+
+<!-- 金刚区 -->
+<!-- <view class=container>
+</view> -->

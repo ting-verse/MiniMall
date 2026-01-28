@@ -1,14 +1,15 @@
-import fly from "flyio";
 import Fly from "flyio";
 
 const fly = new Fly();
 
-fly.config, (baseUrl = "https://www.winweb.cloud.mall");
+// https://wxcode.itndedu.com/mall/bannerList
+
+fly.config.baseURL = "https://wxcode.itndedu.com/mall";
 fly.config.timeout = 1000 * 20;
 
 // 创建一个自定义错误类
 class RequestError extends Error {
-  constructor (message, code) {
+  constructor (message, code, data = {}) {
     super(message)
     this.code = code
     this.data = data

@@ -47,3 +47,15 @@
   color: #A9A6A6;
   line-height: 62rpx;
 }
+
+.swiper-container .swiper1 {
+  width: 750rpx;
+  height: 375rpx;
+}
+
+.swiper-container .swiper1 image {
+  width: 750rpx;
+  height: 375rpx;
+  /* margin: 8rpx 15rpx; */
+  /* border-radius: 16rpx; */
+}
