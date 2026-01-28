@@ -51,7 +51,9 @@
 
     ]
   },
-  "style": "v2",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index"
+  },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
