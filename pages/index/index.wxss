@@ -25,17 +25,17 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 120rpx;
-  margin-right: 20rpx; 
+  margin-right: 50rpx; 
 }
 
 .search input {
-  flex: 1; /* 让输入框占满剩余宽度 */
   display: block;
   box-sizing: border-box;
   background: #F7F8FA;
   height: 62rpx;
+  width: 350rpx;
   border-radius: 20rpx;
-  padding-left: 20rpx;
+  padding-left: 30rpx;
   line-height: 62rpx;
   font-size: 24rpx; 
   border: none; 
