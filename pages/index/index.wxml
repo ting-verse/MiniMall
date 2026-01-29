@@ -15,13 +15,13 @@
   <swiper class="swiper1" indicator-dots autoplay circular indicator-active-color="#fff">
     <block wx:for="{{banners}}" wx:key="id">
       <swiper-item>
-        <image src="{{item.picUrl}}" mode="aspectFit"/>
+        <image src="{{item.picUrl}}" mode="aspectFit" />
       </swiper-item>
     </block>
   </swiper>
   <view class="goodsDynamic">
     <swiper class="swiper2" autoplay circular vertical>
-      <swiper-item wx:for="{{goodsDynamic}}" class="swiper-item">
+      <swiper-item wx:for="{{goodsDynamic}}" wx:key="orderId" class="swiper-item">
         <view class="goodsDynamic-item">
           <text>{{item.nick}} 购买了 {{item.goodsName}}</text>
         </view>
@@ -31,5 +31,13 @@
 </view>
 
 <!-- 金刚区 -->
-<!-- <view class=container>
-</view> -->
+<view class="category-ontainer">
+  <view class="category-box">
+    <view class="category-list" wx:for="{{categories}}" wx:key="id">
+      <view class="category-column">
+        <image class="category-imgbox" src="{{item.icon}}" mode="aspectFit" />
+        <view class="category-title">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>
