@@ -1,10 +1,11 @@
-const { bannerList, category, goodsDynamic } = require('../../apis/products.js')
+const { bannerList, category, goodsDynamic, notice } = require('../../apis/products.js')
 
 Page({
   data: {
     banners: [],
     categories: [],
-    goodsDynamic: []
+    goodsDynamic: [],
+    noticeList: {}
   },
   goSearch() {
     console.log("hello")
@@ -36,6 +37,13 @@ Page({
           goodsDynamic: res.data
         })
       }
+    })
+    // 公告资讯
+    notice().then(res => {
+      console.log(res, "notice")
+      this.setData({
+        noticeList: res.data
+      })
     })
   }
 })

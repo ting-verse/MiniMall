@@ -1,3 +1,4 @@
+/* 顶部搜索框 */
 .search-container {
   background-color: white;
   width: 100%;
@@ -43,11 +44,12 @@
 }
 
 .search-placeholder {
-  font-size: 28rpx; /* 14px → 28rpx */
+  font-size: 28rpx; 
   color: #a9a6a6;
   line-height: 62rpx;
 }
 
+/* 轮播图 */
 .swiper-container {
   position: relative;
 }
@@ -60,8 +62,6 @@
 .swiper-container .swiper1 image {
   width: 750rpx;
   height: 375rpx;
-  /* margin: 8rpx 15rpx; */
-  /* border-radius: 16rpx; */
 }
 
 .goodsDynamic {
@@ -93,6 +93,7 @@
   overflow: hidden;
 }
 
+/* 金刚区 */
 .category-box {
   background-color: #fff;
   display: flex;
@@ -126,3 +127,21 @@
   font-size: 24rpx;
 }
 
+/* 秒杀 */
+.notice-box {
+  width: 100vw;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-bottom: 1rpx solid #efeff4
+}
+
+.notice-box swiper {
+  height: 88rpx;
+  width: 100%
+}
+
+.notice-icon {
+  width: 130rpx;
+  height: 33rpx;
+  margin-right: 10px;
+}

@@ -14,3 +14,8 @@ export function category () {
 export function goodsDynamic () {
   return request.get('/goodsDynamic')
 }
+
+// 资讯公告
+export function notice (pageSize=5) {
+  return request.get(`/notice?pageSize=${pageSize}`)
+}

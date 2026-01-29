@@ -31,7 +31,7 @@
 </view>
 
 <!-- 金刚区 -->
-<view class="category-ontainer">
+<view class="category-container" wx:if="{{categories.length}}">
   <view class="category-box">
     <view class="category-list" wx:for="{{categories}}" wx:key="id">
       <view class="category-column">
@@ -41,3 +41,14 @@
     </view>
   </view>
 </view>
+
+<!-- 资讯公告 -->
+<notice-box class="notice-box" wx:if="{{noticeList}}">
+  <swiper class="notice-swipper" autoplay circular vertical>
+    <swiper-item wx:for="{{noticeList.dataList}}" wx:key="id">
+      <van-notice-bar mode="link" background-color="#fff" scrollable text="{{item.title}}">
+        <image slot="left-icon" class="notice-icon" src="../../images/home/notice.png" mode="aspectFit"/>
+      </van-notice-bar>
+    </swiper-item>
+  </swiper>
+</notice-box>
