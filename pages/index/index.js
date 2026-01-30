@@ -7,6 +7,7 @@ const {
   hotGoods,
   discount,
   collage,
+  goodlist,
 } = require("../../apis/products.js");
 
 Page({
@@ -18,10 +19,36 @@ Page({
     miaoshaGoods: [],
     goodsRecommend: [],
     kanjiaList: [],
-    pingtuanList: []
+    pingtuanList: [],
+    categoryId: "",
+    page: 1, // 当前页
+    pageSize: 20, // 每页展示商品数量
+    totalRow: 0, // 商品总数量
+    goods: [], // 当前商品列表
   },
   goSearch() {
-    console.log("hello");
+    console.log("goSearch");
+  },
+  // 分页获取商品列表
+  async getGoodsList() {
+    const { categoryId, page, pageSize } = this.data;
+    const res = await goodlist({
+      categoryId,
+      page,
+      pageSize,
+    });
+    console.log([...this.data.goods, ...res.data.result], "合并")
+    this.setData({
+      goods: [...this.data.goods, ...res.data.result],
+      totalRow: res.data.totalRow,
+    });
+    console.log(this.data.goods.length,"goods")
+    console.log(this.data.totalRow,"totalRow")
+
+    // 拿到当前商品数据与后端返回的商品数据进行对比
+    if (this.data.goods.length >= this.data.totalRow) {
+      return;
+    }
   },
   onLoad: function (options) {
     // 轮播图
@@ -106,8 +133,23 @@ Page({
     collage().then((res) => {
       console.log(res, "全民拼团");
       this.setData({
-        pingtuanList: res.data.result
-      })
+        pingtuanList: res.data.result,
+      });
     });
+
+    // 页面首次加载需要请求商品分页数据
+    this.getGoodsList()
+  },
+
+  // 页面上拉触底事件的处理函数
+  onReachBottom: function () {
+    this.setData(
+      {
+        page: this.data.page + 1,
+      },
+      () => {
+        this.getGoodsList();
+      }
+    );
   },
 });

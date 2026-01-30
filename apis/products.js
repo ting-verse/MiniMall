@@ -21,21 +21,26 @@ export function notice (pageSize=5) {
 }
 
 // 限时秒杀
-export function seckill() {
+export function seckill () {
   return request.get('seckill')
 }
 
 // 爆品推荐
-export function hotGoods() {
+export function hotGoods () {
   return request.get('/hotGoods')
 }
 
 // 疯狂砍价
-export function discount() {
-  return request.get('./discount')
+export function discount () {
+  return request.get('/discount')
 }
 
 // 全民拼团
-export function collage() {
-  return request.get('./collage')
+export function collage () {
+  return request.get('/collage')
+}
+
+// 商品列表
+export function goodlist ({page, pageSize, categoryId}) {
+  return request.get(`/goodlist?page=${page}&pageSize=${pageSize}&categoryId=${categoryId}`)
 }
