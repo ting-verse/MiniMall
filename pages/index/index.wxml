@@ -47,8 +47,105 @@
   <swiper class="notice-swipper" autoplay circular vertical>
     <swiper-item wx:for="{{noticeList.dataList}}" wx:key="id">
       <van-notice-bar mode="link" background-color="#fff" scrollable text="{{item.title}}">
-        <image slot="left-icon" class="notice-icon" src="../../images/home/notice.png" mode="aspectFit"/>
+        <image slot="left-icon" class="notice-icon" src="../../images/home/notice.png" mode="aspectFit" />
       </van-notice-bar>
     </swiper-item>
   </swiper>
 </notice-box>
+
+<view class="container" wx:if="{{miaoshaGoods.length}}">
+  <!-- 商品秒杀 -->
+  <van-divider custom-class="table-text" contentPosition="center">
+      <image class="table-icon-miaosha" src="../../images/home/miaosha.png"></image> 限时秒杀
+    </van-divider>
+  <view class="miaosha-container">
+    <view class="miaosha-goods-list" wx:for="{{miaoshaGoods}}" wx:key="id">
+      <image src="{{item.pic}}" />
+      <view class="r">
+        <view class="goods-title">{{item.name}}</view>
+        <view class="count-down">
+          <van-count-down wx:if="{{item.dateStartInt > 0}}" time="{{item.dateStartInt}}"
+            format="距离开始: HH 时 mm 分 ss 秒" />
+          <van-count-down wx:if="{{item.dateStartInt <= 0 && item.dateEndInt > 0}}" time="{{item.dateStartInt}}"
+            format="剩余: HH 时 mm 分 ss 秒" />          
+        </view>
+        <view class="miaosha-price-btn">
+          <view class="price">￥{{item.minPrice}}
+            <text>￥{{item.originalPrice}}</text>
+          </view>
+          <view class="my-button">
+            <van-button custom-class="msbtn" type="danger" size="small" round wx:if="{{item.dateStartInt > 0}}">未开始</van-button>
+            <van-button custom-class="msbtn" type="danger" size="small" round wx:if="{{item.dateEndInt <= 0}}">已结束</van-button>
+            <van-button custom-class="msbtn" type="danger" size="small" round wx:if="{{item.dateStartInt <= 0 && item.dateEndInt > 0}}">立即抢购</van-button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 爆品推荐 -->
+  <view class="space"></view>
+  <van-divider custom-class="table-text" wx:if="{{goodsRecommend.length > 0}}"
+    contentPosition="center">
+    <image class="table-icon-tuijian" src="../../images/home/recommend.png"></image> 爆品推荐
+  </van-divider>
+  <view class="goods-container" wx:if="{{goodsRecommend.length > 0}}">
+    <view class="goods-box" wx:for="{{goodsRecommend}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}" data-supplytype="{{item.supplyType}}" data-yyid="{{item.yyId}}">
+      <view class="img-box">
+        <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+      </view>
+      <view class="goods-title van-multi-ellipsis--l2">{{item.name}}</view>
+      <view wx:if="{{item.characteristic}}" class="characteristic van-multi-ellipsis--l2" style="-webkit-line-clamp: 1;">{{item.characteristic}}</view>
+      <view style='display:flex;'>
+        <view class="goods-price">¥ {{item.minPrice}}</view>
+        <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price"
+          style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 疯狂砍价 -->
+  <view wx-if="{{kanjiaList.length > 0}}"
+    class="kanjia-container">
+    <van-divider custom-class="table-text" contentPosition="center">
+      <image class="table-icon-kanjia" src="../../images/home/kanjia.png"></image> 疯狂砍价
+    </van-divider>
+    <van-card custom-class="kanjia-vcard" wx:for="{{kanjiaList}}" wx:key="id" price="{{item.kanjiaPrice}}"
+      origin-price="{{item.originalPrice}}" desc="{{item.characteristic}}" title="{{item.name}}" thumb="{{item.pic}}">
+      <view slot="footer">
+        <van-button custom-class="kjbtn" type="danger" size="small" data-id="{{item.id}}" data-supplytype="{{item.supplyType}}" data-yyid="{{item.yyId}}" bind:click="toDetailsTap">砍价
+        </van-button>
+      </view>
+      <view slot="price-top">
+        <van-progress custom-class="vprogress" percentage="{{item.process}}" color="#FDEDED;" />
+      </view>
+    </van-card>
+  </view>
+  <!-- 全民拼团 -->
+  <block wx:if="{{pingtuanList.length > 0}}">
+    <view class='space'></view>
+    <van-divider custom-class="table-text" contentPosition="center">
+      <image class="table-icon-pingtuan" src="../../images/home/pingtuan.png"></image> 全民拼团
+    </van-divider>
+    <view class='tuan'>
+      <view class='tuan-item' wx:for="{{pingtuanList}}" wx:key="id">
+        <view class='tuan-goods-pic'>
+          <image src="{{item.pic}}" mode="aspectFill" lazy-load='{{true}}' />
+        </view>
+        <view class='tuan-title'>{{item.name}}</view>
+        <view class='tuan-profile'>{{item.characteristic}}</view>
+        <van-tag custom-class="pingtuantag" wx:if="{{item.tags}}" type="danger">{{item.tags}}</van-tag>
+        <view class='tuan-price'>
+          <text class='now'>￥ {{item.pingtuanPrice}}</text>
+          <text class='original'>￥ {{item.originalPrice}}</text>
+        </view>
+        <view class="tuan-btn">
+          <button class="ptbtn" type="warn" size="mini" bindtap="toDetailsTap" data-id="{{item.id}}" data-supplytype="{{item.supplyType}}" data-yyid="{{item.yyId}}">拼团</button>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- 商品列表 -->
+  <view class='space'></view>
+  
+</view>
+
+

@@ -19,3 +19,23 @@ export function goodsDynamic () {
 export function notice (pageSize=5) {
   return request.get(`/notice?pageSize=${pageSize}`)
 }
+
+// 限时秒杀
+export function seckill() {
+  return request.get('seckill')
+}
+
+// 爆品推荐
+export function hotGoods() {
+  return request.get('/hotGoods')
+}
+
+// 疯狂砍价
+export function discount() {
+  return request.get('./discount')
+}
+
+// 全民拼团
+export function collage() {
+  return request.get('./collage')
+}

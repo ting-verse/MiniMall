@@ -54,7 +54,11 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-sticky": "@vant/weapp/sticky/index",
-    "van-notice-bar": "@vant/weapp/notice-bar/index"
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-count-down": "@vant/weapp/count-down/index",
+    "van-card": "@vant/weapp/card/index"
+
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
