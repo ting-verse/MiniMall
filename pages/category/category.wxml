@@ -1,2 +1,12 @@
-<!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<!-- 搜索框 -->
+<van-search value="{{ value }}" placeholder="请输入搜索关键词" use-right-icon-slot>
+  <van-icon name="scan" slot="right-icon"></van-icon>
+</van-search>
+
+<!-- 左侧tab -->
+<van-sidebar active-key="{{ activeKey }}">
+  <van-sidebar-item title="标签名" />
+  <van-sidebar-item title="标签名" />
+  <van-sidebar-item title="标签名" />
+</van-sidebar>
+
