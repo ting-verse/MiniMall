@@ -32,12 +32,16 @@ Page({
   // 分页获取商品列表
   async getGoodsList() {
     const { categoryId, page, pageSize } = this.data;
+    wx.showLoading({
+      mask: true
+    })
     const res = await goodlist({
       categoryId,
       page,
       pageSize,
     });
-    console.log([...this.data.goods, ...res.data.result], "合并")
+    wx.hideLoading()
+    // console.log([...this.data.goods, ...res.data.result], "合并")
     this.setData({
       goods: [...this.data.goods, ...res.data.result],
       totalRow: res.data.totalRow,

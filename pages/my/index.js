@@ -1,4 +1,6 @@
 // pages/my/index.js
+const {checkHasLogined, authorize} = require('../../utils/auth')
+
 Page({
 
   /**
@@ -6,6 +8,15 @@ Page({
    */
   data: {
 
+  },
+  async login () {
+    console.log("登录")
+    const isLogin = await checkHasLogined()
+    console.log(isLogin, "是否登录")
+    if (!isLogin) {
+      await authorize()
+      // 处理登录成功后的逻辑
+    }
   },
 
   /**
