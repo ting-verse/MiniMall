@@ -1,6 +1,9 @@
 <!--pages/my/index.wxml-->
 <view>
-  <button bindtap="login">
-    微信一键授权
-  </button>
+  <button bindtap="login">微信一键授权</button>
+  <button bindtap="getUserInfo" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber">获取用户信息</button>
+  <view wx:if="{{avatarUrl && userName}}">
+    <view>{{userName}}</view>
+    <image src="avatarUrl" mode="aspectFit"/>
+  </view>
 </view>

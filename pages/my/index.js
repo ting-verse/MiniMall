@@ -1,5 +1,6 @@
 // pages/my/index.js
 const {checkHasLogined, authorize} = require('../../utils/auth')
+const {encrypt, getPhone} = require('../../apis/login')
 
 Page({
 
@@ -7,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    avatarUrl:"",
+    userName: ""
   },
   async login () {
     console.log("登录")
@@ -17,6 +19,31 @@ Page({
       await authorize()
       // 处理登录成功后的逻辑
     }
+  },
+  getUserInfo () {
+    wx.getUserProfile({
+      desc: '用于完善会员资料',
+      success: (res) => {
+        console.log(res, "res")
+        // 对加密数据进行解密
+        encrypt(res).then(data => {
+          console.log(data, "解密data")
+          this.setData({
+            avatarUrl: data.avatarUrl,
+            userName: data.userName
+          })
+        })
+      },
+      fail: err => {
+        console.log(err, "err")
+      }
+    })
+  },
+  bindgetphonenumber (e) {
+    console.log(e, "e")
+    getPhone(e.detail.code).then(res => {
+      console.log(res, "res")
+    })
   },
 
   /**
